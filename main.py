@@ -89,4 +89,7 @@ i_length_choices.grid(column=1, row=0, sticky=(W, E))
 
 ttk.Label(length_page, text= ' = ').grid(column=2, row=0, sticky=(W, E))
 
+output_length = StringVar()
+ttk.Label(length_page, text=output_length).grid(column=3, row=0, sticky=(W, E))
+
 root.mainloop()
