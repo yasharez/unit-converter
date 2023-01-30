@@ -158,4 +158,145 @@ o_mass_choices.current(0)
 # Create button widget to calculate conversion
 ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
+#########################################################
+# Create widgets for volume page
+#########################################################
+
+# Display instructions for user
+volume_label = 'Enter the value and units you would like to convert from, then select the units you would like to convert to:'
+ttk.Label(volume_page, text=volume_label).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+# Create entry widget for mass entry
+input_volume = StringVar()
+input_volume_entry = ttk.Entry(volume_page, textvariable=input_volume)
+input_volume_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
+
+# Create combobox widget for 'from' unit
+i_volume_unit = StringVar()
+i_volume_choices = ttk.Combobox(volume_page, state='readonly', textvariable=i_volume_unit)
+i_volume_choices['values'] = (' cubic millimeters', 
+                              ' cubic centimeters', 
+                              ' cubic meters', 
+                              ' cubic kilometers', 
+                              ' liters', 
+                              ' fluid ounces',
+                              ' cups',
+                              ' pints',
+                              ' quarts',
+                              ' gallons')
+i_volume_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
+i_volume_choices.current(0)
+
+# Create label with '='
+ttk.Label(volume_page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+
+# Create label widget for converted output
+output_volume = StringVar()
+ttk.Label(volume_page, textvariable=output_volume).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+
+# Create combobox widget for 'to' unit
+o_volume_unit = StringVar()
+o_volume_choices = ttk.Combobox(volume_page, width=10, state='readonly', textvariable=o_volume_unit)
+o_volume_choices['values'] = (' cubic millimeters', 
+                              ' cubic centimeters', 
+                              ' cubic meters', 
+                              ' cubic kilometers', 
+                              ' liters', 
+                              ' fluid ounces',
+                              ' cups',
+                              ' pints',
+                              ' quarts',
+                              ' gallons')
+o_volume_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
+o_volume_choices.current(0)
+
+# Create button widget to calculate conversion
+ttk.Button(volume_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+
+#########################################################
+# Create widgets for temperature page
+#########################################################
+
+# Display instructions for user
+temp_label = 'Enter the value and units you would like to convert from, then select the units you would like to convert to:'
+ttk.Label(temp_page, text=temp_label).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+# Create entry widget for mass entry
+input_temp = StringVar()
+input_temp_entry = ttk.Entry(temp_page, textvariable=input_temp)
+input_temp_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
+
+# Create combobox widget for 'from' unit
+i_temp_unit = StringVar()
+i_temp_choices = ttk.Combobox(temp_page, state='readonly', textvariable=i_temp_unit)
+i_temp_choices['values'] = (' Celsius', 
+                            ' Fahrenheit', 
+                            ' Kelvin')
+i_temp_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
+i_temp_choices.current(0)
+
+# Create label with '='
+ttk.Label(temp_page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+
+# Create label widget for converted output
+output_temp = StringVar()
+ttk.Label(temp_page, textvariable=output_temp).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+
+# Create combobox widget for 'to' unit
+o_temp_unit = StringVar()
+o_temp_choices = ttk.Combobox(temp_page, width=10, state='readonly', textvariable=o_temp_unit)
+o_temp_choices['values'] = (' Celsius', 
+                            ' Fahrenheit', 
+                            ' Kelvin')
+o_temp_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
+o_temp_choices.current(0)
+
+# Create button widget to calculate conversion
+ttk.Button(temp_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+
+#########################################################
+# Create widgets for currency page
+#########################################################
+
+# Display instructions for user
+currency_label = 'Enter the value and units you would like to convert from, then select the units you would like to convert to:'
+ttk.Label(currency_page, text=currency_label).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+# Create entry widget for mass entry
+input_currency = StringVar()
+input_currency_entry = ttk.Entry(currency_page, textvariable=input_currency)
+input_currency_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
+
+# Create combobox widget for 'from' unit
+i_currency_unit = StringVar()
+i_currency_choices = ttk.Combobox(currency_page, state='readonly', textvariable=i_currency_unit)
+i_currency_choices['values'] = (' USD', 
+                                ' EUR', 
+                                ' JPY', 
+                                ' MXN', 
+                                ' CNY')
+i_currency_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
+i_currency_choices.current(0)
+
+# Create label with '='
+ttk.Label(currency_page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+
+# Create label widget for converted output
+output_currency = StringVar()
+ttk.Label(currency_page, textvariable=output_currency).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+
+# Create combobox widget for 'to' unit
+o_currency_unit = StringVar()
+o_currency_choices = ttk.Combobox(currency_page, width=10, state='readonly', textvariable=o_currency_unit)
+o_currency_choices['values'] = (' USD', 
+                                ' EUR', 
+                                ' JPY', 
+                                ' MXN', 
+                                ' CNY')
+o_currency_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
+o_currency_choices.current(0)
+
+# Create button widget to calculate conversion
+ttk.Button(currency_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+
 root.mainloop()
