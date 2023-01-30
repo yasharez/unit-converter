@@ -1,6 +1,6 @@
 # Yashar Zafari
 # GitHub: yasharez
-# Date: 01/25/2023
+# Date: 01/29/2023
 # Main file for unit-converter program
 
 # Import libraries
@@ -30,11 +30,17 @@ pages.grid(column=0, row=0, sticky=(N, W, E, S))
 
 # Create widget frame for each unit type
 main_page = ttk.Frame(pages)
+main_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 length_page = ttk.Frame(pages)
+length_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 mass_page = ttk.Frame(pages)
+mass_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 volume_page = ttk.Frame(pages)
+volume_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 temp_page = ttk.Frame(pages)
+temp_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 currency_page = ttk.Frame(pages)
+currency_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 
 # Add tabs for each unit to pages
 pages.add(main_page, text='Main')
@@ -121,12 +127,12 @@ input_mass_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_mass_unit = StringVar()
 i_mass_choices = ttk.Combobox(mass_page, state='readonly', textvariable=i_mass_unit)
-i_mass_choices['values'] = (' millimeters', 
-                              ' meters', 
-                              ' kilometers', 
-                              ' inches', 
-                              ' feet', 
-                              ' miles')
+i_mass_choices['values'] = (' milligrams', 
+                              ' grams', 
+                              ' kilograms', 
+                              ' ounces', 
+                              ' pounds', 
+                              ' tons')
 i_mass_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_mass_choices.current(0)
 
@@ -140,12 +146,12 @@ ttk.Label(mass_page, textvariable=output_mass).grid(column=3, row=1, sticky=(W, 
 # Create combobox widget for 'to' unit
 o_mass_unit = StringVar()
 o_mass_choices = ttk.Combobox(mass_page, width=10, state='readonly', textvariable=o_mass_unit)
-o_mass_choices['values'] = (' millimeters', 
-                              ' meters', 
-                              ' kilometers', 
-                              ' inches', 
-                              ' feet', 
-                              ' miles')
+o_mass_choices['values'] = (' milligrams', 
+                              ' grams', 
+                              ' kilograms', 
+                              ' ounces', 
+                              ' pounds', 
+                              ' tons')
 o_mass_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_mass_choices.current(0)
 
