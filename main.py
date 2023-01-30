@@ -20,29 +20,9 @@ root = Tk()
 root.title("Unit Converter")
 
 # # Create a mainframe to put widgets in
-# mainframe = ttk.Frame(root, padding="3 3 12 12")
-# mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 root.config(height=500, width=500)
-
-# feet = StringVar()
-# feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
-# feet_entry.grid(column=2, row=1, sticky=(W, E))
-
-# meters = StringVar()
-# ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
-
-# ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
-
-# ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
-# ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
-# ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
-
-# for child in mainframe.winfo_children(): 
-#     child.grid_configure(padx=5, pady=5)
-# feet_entry.focus()
-# root.bind("<Return>", calculate)
 
 # Create notebook widget to store all pages
 pages = ttk.Notebook(root)
@@ -124,5 +104,52 @@ o_length_choices.current(0)
 
 # Create button widget to calculate conversion
 ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+
+#########################################################
+# Create widgets for mass page
+#########################################################
+
+# Display instructions for user
+mass_label = 'Enter the value and units you would like to convert from, then select the units you would like to convert to:'
+ttk.Label(mass_page, text=mass_label).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+# Create entry widget for mass entry
+input_mass = StringVar()
+input_mass_entry = ttk.Entry(mass_page, textvariable=input_mass)
+input_mass_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
+
+# Create combobox widget for 'from' unit
+i_mass_unit = StringVar()
+i_mass_choices = ttk.Combobox(mass_page, state='readonly', textvariable=i_mass_unit)
+i_mass_choices['values'] = (' millimeters', 
+                              ' meters', 
+                              ' kilometers', 
+                              ' inches', 
+                              ' feet', 
+                              ' miles')
+i_mass_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
+i_mass_choices.current(0)
+
+# Create label with '='
+ttk.Label(mass_page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+
+# Create label widget for converted output
+output_mass = StringVar()
+ttk.Label(mass_page, textvariable=output_mass).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+
+# Create combobox widget for 'to' unit
+o_mass_unit = StringVar()
+o_mass_choices = ttk.Combobox(mass_page, width=10, state='readonly', textvariable=o_mass_unit)
+o_mass_choices['values'] = (' millimeters', 
+                              ' meters', 
+                              ' kilometers', 
+                              ' inches', 
+                              ' feet', 
+                              ' miles')
+o_mass_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
+o_mass_choices.current(0)
+
+# Create button widget to calculate conversion
+ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 root.mainloop()
