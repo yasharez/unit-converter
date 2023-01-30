@@ -82,31 +82,47 @@ ttk.Label(main_page, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S
 # Create widgets for length page
 #########################################################
 
-length_label = 'Please enter the value and units you would like to convert from, then select the units you would like to convert to:'
+# Display instructions for user
+length_label = 'Enter the value and units you would like to convert from, then select the units you would like to convert to:'
+ttk.Label(length_page, text=length_label).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
 
-ttk.Label(length_page, text=length_label).grid(column=0, row=0, columnspan=5, padx=5, pady=5)
-
+# Create entry widget for length entry
 input_length = StringVar()
 input_lenght_entry = ttk.Entry(length_page, width=10, textvariable=input_length)
 input_lenght_entry.grid(column=0, row=1, sticky=(W, E))
 
+# Create combobox widget for 'from' unit
 i_length_unit = StringVar()
 i_length_choices = ttk.Combobox(length_page, width=15, state='readonly', textvariable=i_length_unit)
-i_length_choices['values'] = (' millimeters', ' meters', ' kilometers', ' inches', ' feet', ' miles')
+i_length_choices['values'] = (' millimeters', 
+                              ' meters', 
+                              ' kilometers', 
+                              ' inches', 
+                              ' feet', 
+                              ' miles')
 i_length_choices.grid(column=1, row=1, sticky=(W, E))
 i_length_choices.current(0)
 
-ttk.Label(length_page, text= ' = ').grid(column=2, row=1, sticky=(W, E))
+# Create label with '='
+ttk.Label(length_page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=15)
 
+# Create label widget for converted output
 output_length = StringVar()
 ttk.Label(length_page, textvariable=output_length).grid(column=3, row=1, sticky=(W, E))
 
+# Create combobox widget for 'to' unit
 o_length_unit = StringVar()
 o_length_choices = ttk.Combobox(length_page, width=15, state='readonly', textvariable=o_length_unit)
-o_length_choices['values'] = (' millimeters', ' meters', ' kilometers', ' inches', ' feet', ' miles')
+o_length_choices['values'] = (' millimeters', 
+                              ' meters', 
+                              ' kilometers', 
+                              ' inches', 
+                              ' feet', 
+                              ' miles')
 o_length_choices.grid(column=4, row=1, sticky=(W, E))
 o_length_choices.current(0)
 
+# Create button widget to calculate conversion
 ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=2, row=2)
 
 root.mainloop()
