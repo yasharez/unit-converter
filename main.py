@@ -29,8 +29,8 @@ pages = ttk.Notebook(root)
 pages.grid(column=0, row=0, sticky=(N, W, E, S))
 
 # Create widget frame for each unit type
-main_page = ttk.Frame(pages)
-main_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+semain_page = ttk.Frame(pages)
+semain_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 length_page = ttk.Frame(pages)
 length_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 mass_page = ttk.Frame(pages)
@@ -43,7 +43,7 @@ currency_page = ttk.Frame(pages)
 currency_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
 
 # Add tabs for each unit to pages
-pages.add(main_page, text='Main')
+pages.add(semain_page, text='Main')
 pages.add(length_page, text='Length')
 pages.add(mass_page, text='Mass')
 pages.add(volume_page, text='Volume')
@@ -59,10 +59,10 @@ main_label_2 = '* Currently we support length, mass, volume, temperature, and cu
 main_label_3 = '* Any new features we add in future updates will be featured on this page'
 main_label_4 = '* For now, tap through the tabs at the top of this window to begin converting'
 
-ttk.Label(main_page, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
-ttk.Label(main_page, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
-ttk.Label(main_page, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
-ttk.Label(main_page, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
+ttk.Label(semain_page, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
+ttk.Label(semain_page, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
+ttk.Label(semain_page, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
+ttk.Label(semain_page, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
 #########################################################
 # Create widgets for length page
