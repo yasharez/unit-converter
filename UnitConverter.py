@@ -13,21 +13,21 @@ class UnitConverter:
   def __init__(self):
     """Initialize the application"""
 
-    self._length_units        = (' millimeters', 
+    length_units        = (' millimeters', 
                                   ' meters', 
                                   ' kilometers', 
                                   ' inches', 
                                   ' feet', 
                                   ' miles')
 
-    self._mass_units          = (' milligrams', 
+    mass_units          = (' milligrams', 
                                   ' grams', 
                                   ' kilograms', 
                                   ' ounces', 
                                   ' pounds', 
                                   ' tons')
 
-    self._volume_units        = (' cubic millimeters', 
+    volume_units        = (' cubic millimeters', 
                                   ' cubic centimeters', 
                                   ' cubic meters', 
                                   ' cubic kilometers', 
@@ -38,11 +38,11 @@ class UnitConverter:
                                   ' quarts',
                                   ' gallons')
 
-    self._temperature_units   = (' Celsius', 
+    temperature_units   = (' Celsius', 
                                   ' Fahrenheit', 
                                   ' Kelvin')
 
-    self._currency_units      = (' USD', 
+    currency_units      = (' USD', 
                                   ' EUR', 
                                   ' JPY', 
                                   ' MXN', 
@@ -82,8 +82,11 @@ class UnitConverter:
     self._pages.add(temp_page, text='Temperature')
     self._pages.add(currency_page, text='Currency')
 
+    # Populate each tab for units
     self._create_main_page()
 
+
+    # Start the application mainloop
     self._root.mainloop()
 
   def _create_main_page(self):
@@ -101,6 +104,51 @@ class UnitConverter:
     ttk.Label(self._main_page, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
     ttk.Label(self._main_page, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
+  def _create_unit_page(self, page, units):
+    """
+    Create widgets for desired unit
+    """
+
+    # Display instructions
+    instruction = "Enter the value and units you would like to convert from, then select the units you would like to convert to:"
+    ttk.Label(page, text=instruction).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+
+    # Create entry widget for the unit we want converted from
+    input_val = StringVar()
+    input_entry = ttk.Entry(page, textvariable=input_val)
+    input_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
+
+    # Create combobox widget for the unit we want converted from
+    input_unit = StringVar()
+    input_choices = ttk.Combobox(page, state='readonly', textvariable=input_unit)
+    input_choices['values'] = units
+    input_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
+    input_choices.current(0)
+
+    # Create label for =
+    ttk.Label(page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+
+    # Create label widget for output value
+    output_val = StringVar()
+    ttk.Label(page, textvariable=output_val).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+
+    # Create combobox widget for the unit we want to convert to
+    output_unit = StringVar()
+    output_choices = ttk.Combobox(page, width=10, state='readonly', textvariable=output_unit)
+    output_choices['values'] = units
+    output_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
+    output_choices.current(0)
+
+    # Create button widget to calculate conversion
+    ttk.Button(page, text='Convert', command=self._calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+
+  def _calculate_length(*args):
+    try:
+        value = float(input_val.get())
+        output_val.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+        print(input_unit.get(), output_unit.get())
+    except ValueError:
+        pass
 
 if __name__ == "__main__":
   UnitConverter()
