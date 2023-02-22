@@ -102,6 +102,89 @@ length_conversions  =   {
                                 },
 }
 
+volume_conversions  =   {
+                        'cubic centimeters': {
+                                'cubic centimeters': 1, 
+                                'cubic meters': 0.000001, 
+                                'liters': 0.001, 
+                                'fluid ounces': 0.0338140386,
+                                'cups': 0.0042267548,
+                                'pints': 0.0021133774,
+                                'quarts': 0.0010566887,
+                                'gallons: 0.0002641722'
+                                },
+                        'cubic meters': {
+                                'cubic centimeters': 1000000, 
+                                'cubic meters': 1, 
+                                'liters': 1000, 
+                                'fluid ounces': 33814.038638,
+                                'cups': 4226.7548297,
+                                'pints': 2113.3774149,
+                                'quarts': 1056.6887074,
+                                'gallons': 264.17217686
+                                },
+                        'liters': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+                        'fluid ounces': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+                        'cups': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+                        'pints': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+                        'quarts': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+                        'gallons': {
+                                'cubic centimeters': , 
+                                'cubic meters': , 
+                                'liters': , 
+                                'fluid ounces': ,
+                                'cups': ,
+                                'pints': ,
+                                'quarts': ,
+                                'gallons: '
+                                },
+}
+
 root = Tk()
 root.title("Unit Converter")
 
