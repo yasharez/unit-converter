@@ -16,6 +16,41 @@ def calculate_length(*args):
         pass
 
 
+length_units        =   (' millimeters', 
+                        ' meters', 
+                        ' kilometers', 
+                        ' inches', 
+                        ' feet', 
+                        ' miles')
+
+mass_units          =   (' milligrams', 
+                        ' grams', 
+                        ' kilograms', 
+                        ' ounces', 
+                        ' pounds', 
+                        ' tons')
+
+volume_units        =   (' cubic millimeters', 
+                        ' cubic centimeters', 
+                        ' cubic meters', 
+                        ' cubic kilometers', 
+                        ' liters', 
+                        ' fluid ounces',
+                        ' cups',
+                        ' pints',
+                        ' quarts',
+                        ' gallons')
+
+temperature_units   =   (' Celsius', 
+                        ' Fahrenheit', 
+                        ' Kelvin')
+
+currency_units      =   (' USD', 
+                        ' EUR', 
+                        ' JPY', 
+                        ' MXN', 
+                        ' CNY')
+
 root = Tk()
 root.title("Unit Converter")
 
@@ -80,12 +115,7 @@ input_lenght_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_length_unit = StringVar()
 i_length_choices = ttk.Combobox(length_page, state='readonly', textvariable=i_length_unit)
-i_length_choices['values'] = (' millimeters', 
-                              ' meters', 
-                              ' kilometers', 
-                              ' inches', 
-                              ' feet', 
-                              ' miles')
+i_length_choices['values'] = length_units
 i_length_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_length_choices.current(0)
 
@@ -99,12 +129,7 @@ ttk.Label(length_page, textvariable=output_length).grid(column=3, row=1, sticky=
 # Create combobox widget for 'to' unit
 o_length_unit = StringVar()
 o_length_choices = ttk.Combobox(length_page, width=10, state='readonly', textvariable=o_length_unit)
-o_length_choices['values'] = (' millimeters', 
-                              ' meters', 
-                              ' kilometers', 
-                              ' inches', 
-                              ' feet', 
-                              ' miles')
+o_length_choices['values'] = length_units
 o_length_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_length_choices.current(0)
 
@@ -127,12 +152,7 @@ input_mass_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_mass_unit = StringVar()
 i_mass_choices = ttk.Combobox(mass_page, state='readonly', textvariable=i_mass_unit)
-i_mass_choices['values'] = (' milligrams', 
-                              ' grams', 
-                              ' kilograms', 
-                              ' ounces', 
-                              ' pounds', 
-                              ' tons')
+i_mass_choices['values'] = mass_units
 i_mass_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_mass_choices.current(0)
 
@@ -146,12 +166,7 @@ ttk.Label(mass_page, textvariable=output_mass).grid(column=3, row=1, sticky=(W, 
 # Create combobox widget for 'to' unit
 o_mass_unit = StringVar()
 o_mass_choices = ttk.Combobox(mass_page, width=10, state='readonly', textvariable=o_mass_unit)
-o_mass_choices['values'] = (' milligrams', 
-                              ' grams', 
-                              ' kilograms', 
-                              ' ounces', 
-                              ' pounds', 
-                              ' tons')
+o_mass_choices['values'] = mass_units
 o_mass_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_mass_choices.current(0)
 
@@ -174,16 +189,7 @@ input_volume_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_volume_unit = StringVar()
 i_volume_choices = ttk.Combobox(volume_page, state='readonly', textvariable=i_volume_unit)
-i_volume_choices['values'] = (' cubic millimeters', 
-                              ' cubic centimeters', 
-                              ' cubic meters', 
-                              ' cubic kilometers', 
-                              ' liters', 
-                              ' fluid ounces',
-                              ' cups',
-                              ' pints',
-                              ' quarts',
-                              ' gallons')
+i_volume_choices['values'] = volume_units
 i_volume_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_volume_choices.current(0)
 
@@ -197,16 +203,7 @@ ttk.Label(volume_page, textvariable=output_volume).grid(column=3, row=1, sticky=
 # Create combobox widget for 'to' unit
 o_volume_unit = StringVar()
 o_volume_choices = ttk.Combobox(volume_page, width=10, state='readonly', textvariable=o_volume_unit)
-o_volume_choices['values'] = (' cubic millimeters', 
-                              ' cubic centimeters', 
-                              ' cubic meters', 
-                              ' cubic kilometers', 
-                              ' liters', 
-                              ' fluid ounces',
-                              ' cups',
-                              ' pints',
-                              ' quarts',
-                              ' gallons')
+o_volume_choices['values'] = volume_units
 o_volume_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_volume_choices.current(0)
 
@@ -229,9 +226,7 @@ input_temp_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_temp_unit = StringVar()
 i_temp_choices = ttk.Combobox(temp_page, state='readonly', textvariable=i_temp_unit)
-i_temp_choices['values'] = (' Celsius', 
-                            ' Fahrenheit', 
-                            ' Kelvin')
+i_temp_choices['values'] = temperature_units
 i_temp_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_temp_choices.current(0)
 
@@ -245,9 +240,7 @@ ttk.Label(temp_page, textvariable=output_temp).grid(column=3, row=1, sticky=(W, 
 # Create combobox widget for 'to' unit
 o_temp_unit = StringVar()
 o_temp_choices = ttk.Combobox(temp_page, width=10, state='readonly', textvariable=o_temp_unit)
-o_temp_choices['values'] = (' Celsius', 
-                            ' Fahrenheit', 
-                            ' Kelvin')
+o_temp_choices['values'] = temperature_units
 o_temp_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_temp_choices.current(0)
 
@@ -270,11 +263,7 @@ input_currency_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 # Create combobox widget for 'from' unit
 i_currency_unit = StringVar()
 i_currency_choices = ttk.Combobox(currency_page, state='readonly', textvariable=i_currency_unit)
-i_currency_choices['values'] = (' USD', 
-                                ' EUR', 
-                                ' JPY', 
-                                ' MXN', 
-                                ' CNY')
+i_currency_choices['values'] = currency_units
 i_currency_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
 i_currency_choices.current(0)
 
@@ -288,11 +277,7 @@ ttk.Label(currency_page, textvariable=output_currency).grid(column=3, row=1, sti
 # Create combobox widget for 'to' unit
 o_currency_unit = StringVar()
 o_currency_choices = ttk.Combobox(currency_page, width=10, state='readonly', textvariable=o_currency_unit)
-o_currency_choices['values'] = (' USD', 
-                                ' EUR', 
-                                ' JPY', 
-                                ' MXN', 
-                                ' CNY')
+o_currency_choices['values'] = currency_units
 o_currency_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_currency_choices.current(0)
 
