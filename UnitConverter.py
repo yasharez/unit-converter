@@ -13,10 +13,10 @@ class UnitConverter:
   def __init__(self):
     """Initialize the application"""
 
-    self._input_val = ''
-    self._output_val = ''
-    self._input_unit = ''
-    self._output_unit = ''
+    __input_val = ''
+    __output_val = ''
+    __input_unit = ''
+    __output_unit = ''
 
     length_units        = (' millimeters', 
                                   ' meters', 
@@ -53,33 +53,34 @@ class UnitConverter:
                                   ' MXN', 
                                   ' CNY')
 
-    self._root = Tk()
-    self._root.title("Unit Converter")
+    self.__root = Tk()
+    self.__root.title("Unit Converter")
 
-    # # Create self._conversion_frame to put widgets in
-    # self._root.columnconfigure(0, weight=1)
-    # self._root.rowconfigure(0, weight=1)
-    # self._root.config(height=500, width=500)
+    # # Create self.__conversion_frame to put widgets in
+    # self.__root.columnconfigure(0, weight=1)
+    # self.__root.rowconfigure(0, weight=1)
+    # self.__root.config(height=500, width=500)
 
-    self._conversion_frame = ttk.Frame(self._root, padding='5 5 5 5')
-    self._conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
-    self._conversion_frame.grid(column=0, row=0, sticky=(N, W, E, S))
-    self._root.columnconfigure(0, weight=1)
-    self._root.rowconfigure(0, weight=1)
+    self.__mainframe = ttk.Frame(self.__root, padding='5 5 5 5')
+    self.__mainframe.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
+    self.__mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+    self.__root.columnconfigure(0, weight=1)
+    self.__root.rowconfigure(0, weight=1)
 
-    homeBtn = ttk.Button(self._conversion_frame, text='Home', default='active').grid(column=0, row=0, sticky=(N, W, E))
-    lengthBtn = ttk.Button(self._conversion_frame, text='Length').grid(column=1, row=0, sticky=(N, W, E))
-    massBtn = ttk.Button(self._conversion_frame, text='Mass').grid(column=2, row=0, sticky=(N, W, E))
-    volumeBtn = ttk.Button(self._conversion_frame, text='Volume').grid(column=3, row=0, sticky=(N, W, E))
-    tempBtn = ttk.Button(self._conversion_frame, text='Temperature').grid(column=4, row=0, sticky=(N, W, E))
-    currencyBtn = ttk.Button(self._conversion_frame, text='Currency').grid(column=5, row=0, sticky=(N, W, E))
+    self.__conversion_frame = ttk.Frame(self.__mainframe)
+    self.__conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
+    self.__conversion_frame.grid(column=0, row=1, columnspan=6, sticky=(N, W, E, S))
 
-    self._conversion_frame = ttk.Frame(self._conversion_frame)
-    self._conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
-    self._conversion_frame.grid(column=0, row=1, columnspan=6, sticky=(N, W, E, S))
+    homeBtn = ttk.Button(self.__mainframe, text='Home', default='active', command=self.__create_main_page()).grid(column=0, row=0, sticky=(N, W, E))
+    lengthBtn = ttk.Button(self.__mainframe, text='Length', command=self.__create_unit_page(length_units)).grid(column=1, row=0, sticky=(N, W, E))
+    massBtn = ttk.Button(self.__mainframe, text='Mass', command=self.__create_unit_page(mass_units)).grid(column=2, row=0, sticky=(N, W, E))
+    volumeBtn = ttk.Button(self.__mainframe, text='Volume', command=self.__create_unit_page(volume_units)).grid(column=3, row=0, sticky=(N, W, E))
+    tempBtn = ttk.Button(self.__mainframe, text='Temperature', command=self.__create_unit_page(temperature_units)).grid(column=4, row=0, sticky=(N, W, E))
+    currencyBtn = ttk.Button(self.__mainframe, text='Currency', command=self.__create_unit_page(currency_units)).grid(column=5, row=0, sticky=(N, W, E))
+
 
     # # Create notebook widget to store all pages
-    # self._pages = ttk.Notebook(self._root)
+    # self._pages = ttk.Notebook(self.__root)
     # self._pages.grid(column=0, row=0, sticky=(N, W, E, S))
 
     # # Create widget frame for each unit type
@@ -105,14 +106,14 @@ class UnitConverter:
     # self._pages.add(currency_page, text='Currency')
 
     # Populate each tab for units
-    self._create_main_page()
+    self.__create_main_page()
 
 
 
     # Start the application mainloop
-    self._root.mainloop()
+    self.__root.mainloop()
 
-  def _create_main_page(self):
+  def __create_main_page(self):
     """
     Create the widgets for the main page
     """
@@ -122,54 +123,54 @@ class UnitConverter:
     main_label_3 = '* Any new features we add in future updates will be featured on this page'
     main_label_4 = '* For now, tap through the tabs at the top of this window to begin converting'
 
-    ttk.Label(self._conversion_frame, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
-    ttk.Label(self._conversion_frame, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(self._conversion_frame, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(self._conversion_frame, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
+    ttk.Label(self.__conversion_frame, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
+    ttk.Label(self.__conversion_frame, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
+    ttk.Label(self.__conversion_frame, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
+    ttk.Label(self.__conversion_frame, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
-  def _create_unit_page(self, page, units):
+  def __create_unit_page(self, units):
     """
     Create widgets for desired unit
     """
 
     # Display instructions
     instruction = "Enter the value and units you would like to convert from, then select the units you would like to convert to:"
-    ttk.Label(page, text=instruction).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
+    ttk.Label(self.__conversion_frame, text=instruction).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
 
     # Create entry widget for the unit we want converted from
-    self._input_val = StringVar()
-    input_entry = ttk.Entry(page, textvariable=self._input_val)
+    __input_val = StringVar()
+    input_entry = ttk.Entry(self.__conversion_frame, textvariable=__input_val)
     input_entry.grid(column=0, row=1, sticky=(W, E), padx=(10, 0))
 
     # Create combobox widget for the unit we want converted from
-    self._input_unit = StringVar()
-    input_choices = ttk.Combobox(page, state='readonly', textvariable=self._input_unit)
+    __input_unit = StringVar()
+    input_choices = ttk.Combobox(self.__conversion_frame, state='readonly', textvariable=__input_unit)
     input_choices['values'] = units
     input_choices.grid(column=1, row=1, sticky=(W, E), padx=(10, 0))
     input_choices.current(0)
 
     # Create label for =
-    ttk.Label(page, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
+    ttk.Label(self.__conversion_frame, text= '=').grid(column=2, row=1, sticky=(W, E), padx=(15))
 
     # Create label widget for output value
-    self._output_val = StringVar()
-    ttk.Label(page, textvariable=self._output_val).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
+    __output_val = StringVar()
+    ttk.Label(self.__conversion_frame, textvariable=__output_val).grid(column=3, row=1, sticky=(W, E), padx=(0, 10))
 
     # Create combobox widget for the unit we want to convert to
-    self._output_unit = StringVar()
-    output_choices = ttk.Combobox(page, width=10, state='readonly', textvariable=self._output_unit)
+    __output_unit = StringVar()
+    output_choices = ttk.Combobox(self.__conversion_frame, width=10, state='readonly', textvariable=__output_unit)
     output_choices['values'] = units
     output_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
     output_choices.current(0)
 
     # Create button widget to calculate conversion
-    ttk.Button(page, text='Convert', command=self._calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+    ttk.Button(self.__conversion_frame, text='Convert', command=self.__calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
-  def _calculate_length(*args):
+  def __calculate_length(*args):
     try:
-        value = float(self._input_val.get())
-        self._output_val.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
-        print(self._input_unit.get(), self._output_unit.get())
+        value = float(__input_val.get())
+        __output_val.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+        print(__input_unit.get(), __output_unit.get())
     except ValueError:
         pass
 
