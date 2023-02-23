@@ -56,44 +56,57 @@ class UnitConverter:
     self._root = Tk()
     self._root.title("Unit Converter")
 
-    # Create mainframe to put widgets in
+    # # Create self._conversion_frame to put widgets in
+    # self._root.columnconfigure(0, weight=1)
+    # self._root.rowconfigure(0, weight=1)
+    # self._root.config(height=500, width=500)
+
+    self._conversion_frame = ttk.Frame(self._root, padding='5 5 5 5')
+    self._conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
+    self._conversion_frame.grid(column=0, row=0, sticky=(N, W, E, S))
     self._root.columnconfigure(0, weight=1)
     self._root.rowconfigure(0, weight=1)
-    self._root.config(height=500, width=500)
 
-    # Create notebook widget to store all pages
-    self._pages = ttk.Notebook(self._root)
-    self._pages.grid(column=0, row=0, sticky=(N, W, E, S))
+    homeBtn = ttk.Button(self._conversion_frame, text='Home', default='active').grid(column=0, row=0, sticky=(N, W, E))
+    lengthBtn = ttk.Button(self._conversion_frame, text='Length').grid(column=1, row=0, sticky=(N, W, E))
+    massBtn = ttk.Button(self._conversion_frame, text='Mass').grid(column=2, row=0, sticky=(N, W, E))
+    volumeBtn = ttk.Button(self._conversion_frame, text='Volume').grid(column=3, row=0, sticky=(N, W, E))
+    tempBtn = ttk.Button(self._conversion_frame, text='Temperature').grid(column=4, row=0, sticky=(N, W, E))
+    currencyBtn = ttk.Button(self._conversion_frame, text='Currency').grid(column=5, row=0, sticky=(N, W, E))
 
-    # Create widget frame for each unit type
-    self._main_page = ttk.Frame(self._pages)
-    self._main_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
-    length_page = ttk.Frame(self._pages)
-    length_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
-    mass_page = ttk.Frame(self._pages)
-    mass_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
-    volume_page = ttk.Frame(self._pages)
-    volume_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
-    temperature_page = ttk.Frame(self._pages)
-    temperature_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
-    currency_page = ttk.Frame(self._pages)
-    currency_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    self._conversion_frame = ttk.Frame(self._conversion_frame)
+    self._conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
+    self._conversion_frame.grid(column=0, row=1, columnspan=6, sticky=(N, W, E, S))
 
-    # Add tabs for each unit to pages
-    self._pages.add(self._main_page, text='Main')
-    self._pages.add(length_page, text='Length')
-    self._pages.add(mass_page, text='Mass')
-    self._pages.add(volume_page, text='Volume')
-    self._pages.add(temperature_page, text='Temperature')
-    self._pages.add(currency_page, text='Currency')
+    # # Create notebook widget to store all pages
+    # self._pages = ttk.Notebook(self._root)
+    # self._pages.grid(column=0, row=0, sticky=(N, W, E, S))
+
+    # # Create widget frame for each unit type
+    # self._main_page = ttk.Frame(self._pages)
+    # self._main_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    # length_page = ttk.Frame(self._pages)
+    # length_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    # mass_page = ttk.Frame(self._pages)
+    # mass_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    # volume_page = ttk.Frame(self._pages)
+    # volume_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    # temperature_page = ttk.Frame(self._pages)
+    # temperature_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+    # currency_page = ttk.Frame(self._pages)
+    # currency_page.columnconfigure((0, 1, 2, 3, 4), weight=1)
+
+    # # Add tabs for each unit to pages
+    # self._pages.add(self._main_page, text='Main')
+    # self._pages.add(length_page, text='Length')
+    # self._pages.add(mass_page, text='Mass')
+    # self._pages.add(volume_page, text='Volume')
+    # self._pages.add(temperature_page, text='Temperature')
+    # self._pages.add(currency_page, text='Currency')
 
     # Populate each tab for units
     self._create_main_page()
-    self._create_unit_page(length_page, length_units)
-    self._create_unit_page(mass_page, mass_units)
-    self._create_unit_page(volume_page, volume_units)
-    self._create_unit_page(temperature_page, temperature_units)
-    self._create_unit_page(currency_page, currency_units)
+
 
 
     # Start the application mainloop
@@ -109,10 +122,10 @@ class UnitConverter:
     main_label_3 = '* Any new features we add in future updates will be featured on this page'
     main_label_4 = '* For now, tap through the tabs at the top of this window to begin converting'
 
-    ttk.Label(self._main_page, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
-    ttk.Label(self._main_page, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(self._main_page, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(self._main_page, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
+    ttk.Label(self._conversion_frame, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
+    ttk.Label(self._conversion_frame, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
+    ttk.Label(self._conversion_frame, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
+    ttk.Label(self._conversion_frame, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
   def _create_unit_page(self, page, units):
     """
