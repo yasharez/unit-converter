@@ -8,9 +8,63 @@ from tkinter import *
 from tkinter import ttk
 
 def calculate_length(*args):
+
+    length_conversions  =   {
+                            'millimeters': {
+                                    'millimeters': 1,
+                                    'meters': 0.001,
+                                    'kilometers': 0.000001,
+                                    'inches': 0.0393701,
+                                    'feet': 0.00328084,
+                                    'miles': 0.0000006213688756
+                                    },
+                            'meters': {
+                                    'millimeters': 1000,
+                                    'meters': 1,
+                                    'kilometers': 0.001,
+                                    'inches': 39.3701,
+                                    'feet': 3.28084,
+                                    'miles': 0.0006213688756
+                                    },
+                            'kilometers': {
+                                    'millimeters': 1000000,
+                                    'meters': 1000,
+                                    'kilometers': 1,
+                                    'inches': 39370.1,
+                                    'feet': 3280.84,
+                                    'miles': 0.6213688756
+                                    },
+                            'inches': {
+                                    'millimeters': 25.4,
+                                    'meters': 0.0254,
+                                    'kilometers': 0.0000254,
+                                    'inches': 1,
+                                    'feet': 0.083333333,
+                                    'miles': 0.000015783
+                                    },
+                            'feet': {
+                                    'millimeters': 304.8,
+                                    'meters': 0.3048,
+                                    'kilometers': 0.0003048,
+                                    'inches': 12,
+                                    'feet': 1,
+                                    'miles': 0.000189394
+                                    },
+                            'miles': {
+                                    'millimeters': 1609340,
+                                    'meters': 1609.34,
+                                    'kilometers': 1.60934,
+                                    'inches': 63360,
+                                    'feet': 5280,
+                                    'miles': 1
+                                    },
+                            }
+    
     try:
         value = float(input_length.get())
-        output_length.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+        from_unit = i_length_unit.get().strip()
+        to_unit = o_length_unit.get().strip()
+        output_length.set(length_conversions[from_unit][to_unit] * value)
         print(i_length_unit.get(), o_length_unit.get())
     except ValueError:
         pass
@@ -51,56 +105,7 @@ currency_units      =   (' USD',
                         ' MXN', 
                         ' CNY')
 
-length_conversions  =   {
-                        'millimeters': {
-                                'millimeters': 1,
-                                'meters': 0.001,
-                                'kilometers': 0.000001,
-                                'inches': 0.0393701,
-                                'feet': 0.00328084,
-                                'miles': 0.0000006213688756
-                                },
-                        'meters': {
-                                'millimeters': 1000,
-                                'meters': 1,
-                                'kilometers': 0.001,
-                                'inches': 39.3701,
-                                'feet': 3.28084,
-                                'miles': 0.0006213688756
-                                },
-                        'kilometers': {
-                                'millimeters': 1000000,
-                                'meters': 1000,
-                                'kilometers': 1,
-                                'inches': 39370.1,
-                                'feet': 3280.84,
-                                'miles': 0.6213688756
-                                },
-                        'inches': {
-                                'millimeters': 25.4,
-                                'meters': 0.0254,
-                                'kilometers': 0.0000254,
-                                'inches': 1,
-                                'feet': 0.083333333,
-                                'miles': 0.000015783
-                                },
-                        'feet': {
-                                'millimeters': 304.8,
-                                'meters': 0.3048,
-                                'kilometers': 0.0003048,
-                                'inches': 12,
-                                'feet': 1,
-                                'miles': 0.000189394
-                                },
-                        'miles': {
-                                'millimeters': 1609340,
-                                'meters': 1609.34,
-                                'kilometers': 1.60934,
-                                'inches': 63360,
-                                'feet': 5280,
-                                'miles': 1
-                                },
-}
+
 
 volume_conversions  =   {
                         'cubic centimeters': {
@@ -268,10 +273,10 @@ o_length_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_length_choices.current(0)
 
 # Create button widget to insert random number for user
-ttk.Button(length_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+ttk.Button(length_page, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,0))
 
 # Create button widget to calculate conversion
-ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(0, 10))
 
 #########################################################
 # Create widgets for mass page
@@ -308,10 +313,10 @@ o_mass_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_mass_choices.current(0)
 
 # Create button widget to insert random number for user
-ttk.Button(mass_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+ttk.Button(mass_page, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,0))
 
 # Create button widget to calculate conversion
-ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(0, 10))
 
 #########################################################
 # Create widgets for volume page
@@ -348,10 +353,10 @@ o_volume_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_volume_choices.current(0)
 
 # Create button widget to insert random number for user
-ttk.Button(volume_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+ttk.Button(volume_page, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,0))
 
 # Create button widget to calculate conversion
-ttk.Button(volume_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(volume_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(0, 10))
 
 #########################################################
 # Create widgets for temperature page
@@ -388,10 +393,10 @@ o_temp_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_temp_choices.current(0)
 
 # Create button widget to insert random number for user
-ttk.Button(temp_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+ttk.Button(temp_page, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,0))
 
 # Create button widget to calculate conversion
-ttk.Button(temp_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(temp_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(0, 10))
 
 #########################################################
 # Create widgets for currency page
@@ -428,9 +433,9 @@ o_currency_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_currency_choices.current(0)
 
 # Create button widget to insert random number for user
-ttk.Button(currency_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+ttk.Button(currency_page, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10))
 
 # Create button widget to calculate conversion
-ttk.Button(currency_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(currency_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(0, 10))
 
 root.mainloop()
