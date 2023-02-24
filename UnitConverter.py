@@ -144,7 +144,7 @@ class UnitConverter:
     output_choices.current(0)
 
     # Create button widget to insert random number for user
-    ttk.Button(conversion_frame, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,5))
+    ttk.Button(conversion_frame, text='Random', command=self.__randomize).grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,5))
 
     # Create button widget to calculate conversion
     ttk.Button(conversion_frame, text='Convert', command=self.__convert).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(5, 10))
@@ -159,9 +159,10 @@ class UnitConverter:
       except ValueError:
           pass
 
-  def __randomize(*args):
+  def __randomize(self, *args):
 
       random = client.client()
+      self.__input_val.set(float(random))
 
 if __name__ == "__main__":
   UnitConverter()
