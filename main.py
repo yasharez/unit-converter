@@ -111,7 +111,7 @@ volume_conversions  =   {
                                 'cups': 0.0042267548,
                                 'pints': 0.0021133774,
                                 'quarts': 0.0010566887,
-                                'gallons: 0.0002641722'
+                                'gallons': 0.0002641722
                                 },
                         'cubic meters': {
                                 'cubic centimeters': 1000000, 
@@ -124,65 +124,65 @@ volume_conversions  =   {
                                 'gallons': 264.17217686
                                 },
                         'liters': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
+                                'cubic centimeters': 1000, 
+                                'cubic meters': 0.001, 
+                                'liters': 1, 
+                                'fluid ounces': 33.814038638,
+                                'cups': 4.2267548297,
+                                'pints': 2.1133774149,
+                                'quarts': 1.0566887074,
+                                'gallons': 0.2641721769
                                 },
                         'fluid ounces': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
+                                'cubic centimeters': 29.573515625, 
+                                'cubic meters': 0.0000295735, 
+                                'liters': 0.0295735156, 
+                                'fluid ounces': 1,
+                                'cups': 0.125,
+                                'pints': 0.0625,
+                                'quarts': 0.03125,
+                                'gallons': 0.0078125
                                 },
                         'cups': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
+                                'cubic centimeters': 236.588125, 
+                                'cubic meters': 0.0002365881, 
+                                'liters': 0.236588125, 
+                                'fluid ounces': 8,
+                                'cups': 1,
+                                'pints': 0.5,
+                                'quarts': 0.25,
+                                'gallons': 0.0625
                                 },
                         'pints': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
+                                'cubic centimeters': 473.17625, 
+                                'cubic meters': 0.0004731763, 
+                                'liters': 0.47317625, 
+                                'fluid ounces': 16,
+                                'cups': 2,
+                                'pints': 1,
+                                'quarts': 0.5,
+                                'gallons': 0.125
                                 },
                         'quarts': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
+                                'cubic centimeters': 946.3525, 
+                                'cubic meters': 0.0009463525, 
+                                'liters': 0.9463525, 
+                                'fluid ounces': 32,
+                                'cups': 4,
+                                'pints': 2,
+                                'quarts': 1,
+                                'gallons': 0.25
                                 },
                         'gallons': {
-                                'cubic centimeters': , 
-                                'cubic meters': , 
-                                'liters': , 
-                                'fluid ounces': ,
-                                'cups': ,
-                                'pints': ,
-                                'quarts': ,
-                                'gallons: '
-                                },
+                                'cubic centimeters': 3785.41, 
+                                'cubic meters': 0.00378541, 
+                                'liters': 3.78541, 
+                                'fluid ounces': 128,
+                                'cups': 16,
+                                'pints': 8,
+                                'quarts': 4,
+                                'gallons': 1
+                                }
 }
 
 root = Tk()
@@ -267,8 +267,11 @@ o_length_choices['values'] = length_units
 o_length_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_length_choices.current(0)
 
+# Create button widget to insert random number for user
+ttk.Button(length_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+
 # Create button widget to calculate conversion
-ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(length_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 #########################################################
 # Create widgets for mass page
@@ -304,8 +307,11 @@ o_mass_choices['values'] = mass_units
 o_mass_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_mass_choices.current(0)
 
+# Create button widget to insert random number for user
+ttk.Button(mass_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+
 # Create button widget to calculate conversion
-ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(mass_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 #########################################################
 # Create widgets for volume page
@@ -341,8 +347,11 @@ o_volume_choices['values'] = volume_units
 o_volume_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_volume_choices.current(0)
 
+# Create button widget to insert random number for user
+ttk.Button(volume_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+
 # Create button widget to calculate conversion
-ttk.Button(volume_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(volume_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 #########################################################
 # Create widgets for temperature page
@@ -378,8 +387,11 @@ o_temp_choices['values'] = temperature_units
 o_temp_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_temp_choices.current(0)
 
+# Create button widget to insert random number for user
+ttk.Button(temp_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+
 # Create button widget to calculate conversion
-ttk.Button(temp_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(temp_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 #########################################################
 # Create widgets for currency page
@@ -415,7 +427,10 @@ o_currency_choices['values'] = currency_units
 o_currency_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
 o_currency_choices.current(0)
 
+# Create button widget to insert random number for user
+ttk.Button(currency_page, text='Random').grid(column=0, row=2, columnspan=2, sticky=(E, W), pady=(20,0))
+
 # Create button widget to calculate conversion
-ttk.Button(currency_page, text='Convert', command=calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+ttk.Button(currency_page, text='Convert', command=calculate_length).grid(column=2, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
 root.mainloop()
