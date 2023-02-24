@@ -69,6 +69,105 @@ def calculate_length(*args):
     except ValueError:
         pass
 
+def calculate_mass(*args):
+
+    volume_conversions  =   {
+                            'cubic centimeters': {
+                                    'cubic centimeters': 1, 
+                                    'cubic meters': 0.000001, 
+                                    'liters': 0.001, 
+                                    'fluid ounces': 0.0338140386,
+                                    'cups': 0.0042267548,
+                                    'pints': 0.0021133774,
+                                    'quarts': 0.0010566887,
+                                    'gallons': 0.0002641722
+                                    },
+                            'cubic meters': {
+                                    'cubic centimeters': 1000000, 
+                                    'cubic meters': 1, 
+                                    'liters': 1000, 
+                                    'fluid ounces': 33814.038638,
+                                    'cups': 4226.7548297,
+                                    'pints': 2113.3774149,
+                                    'quarts': 1056.6887074,
+                                    'gallons': 264.17217686
+                                    },
+                            'liters': {
+                                    'cubic centimeters': 1000, 
+                                    'cubic meters': 0.001, 
+                                    'liters': 1, 
+                                    'fluid ounces': 33.814038638,
+                                    'cups': 4.2267548297,
+                                    'pints': 2.1133774149,
+                                    'quarts': 1.0566887074,
+                                    'gallons': 0.2641721769
+                                    },
+                            'fluid ounces': {
+                                    'cubic centimeters': 29.573515625, 
+                                    'cubic meters': 0.0000295735, 
+                                    'liters': 0.0295735156, 
+                                    'fluid ounces': 1,
+                                    'cups': 0.125,
+                                    'pints': 0.0625,
+                                    'quarts': 0.03125,
+                                    'gallons': 0.0078125
+                                    },
+                            'cups': {
+                                    'cubic centimeters': 236.588125, 
+                                    'cubic meters': 0.0002365881, 
+                                    'liters': 0.236588125, 
+                                    'fluid ounces': 8,
+                                    'cups': 1,
+                                    'pints': 0.5,
+                                    'quarts': 0.25,
+                                    'gallons': 0.0625
+                                    },
+                            'pints': {
+                                    'cubic centimeters': 473.17625, 
+                                    'cubic meters': 0.0004731763, 
+                                    'liters': 0.47317625, 
+                                    'fluid ounces': 16,
+                                    'cups': 2,
+                                    'pints': 1,
+                                    'quarts': 0.5,
+                                    'gallons': 0.125
+                                    },
+                            'quarts': {
+                                    'cubic centimeters': 946.3525, 
+                                    'cubic meters': 0.0009463525, 
+                                    'liters': 0.9463525, 
+                                    'fluid ounces': 32,
+                                    'cups': 4,
+                                    'pints': 2,
+                                    'quarts': 1,
+                                    'gallons': 0.25
+                                    },
+                            'gallons': {
+                                    'cubic centimeters': 3785.41, 
+                                    'cubic meters': 0.00378541, 
+                                    'liters': 3.78541, 
+                                    'fluid ounces': 128,
+                                    'cups': 16,
+                                    'pints': 8,
+                                    'quarts': 4,
+                                    'gallons': 1
+                                    }
+                            }
+
+    pass
+
+def calculate_volume(*args):
+
+    pass
+
+def calculate_temperature(*args):
+
+    pass
+
+def calculate_currency(*args):
+
+    pass
+
 
 length_units        =   (' millimeters', 
                         ' meters', 
@@ -107,88 +206,7 @@ currency_units      =   (' USD',
 
 
 
-volume_conversions  =   {
-                        'cubic centimeters': {
-                                'cubic centimeters': 1, 
-                                'cubic meters': 0.000001, 
-                                'liters': 0.001, 
-                                'fluid ounces': 0.0338140386,
-                                'cups': 0.0042267548,
-                                'pints': 0.0021133774,
-                                'quarts': 0.0010566887,
-                                'gallons': 0.0002641722
-                                },
-                        'cubic meters': {
-                                'cubic centimeters': 1000000, 
-                                'cubic meters': 1, 
-                                'liters': 1000, 
-                                'fluid ounces': 33814.038638,
-                                'cups': 4226.7548297,
-                                'pints': 2113.3774149,
-                                'quarts': 1056.6887074,
-                                'gallons': 264.17217686
-                                },
-                        'liters': {
-                                'cubic centimeters': 1000, 
-                                'cubic meters': 0.001, 
-                                'liters': 1, 
-                                'fluid ounces': 33.814038638,
-                                'cups': 4.2267548297,
-                                'pints': 2.1133774149,
-                                'quarts': 1.0566887074,
-                                'gallons': 0.2641721769
-                                },
-                        'fluid ounces': {
-                                'cubic centimeters': 29.573515625, 
-                                'cubic meters': 0.0000295735, 
-                                'liters': 0.0295735156, 
-                                'fluid ounces': 1,
-                                'cups': 0.125,
-                                'pints': 0.0625,
-                                'quarts': 0.03125,
-                                'gallons': 0.0078125
-                                },
-                        'cups': {
-                                'cubic centimeters': 236.588125, 
-                                'cubic meters': 0.0002365881, 
-                                'liters': 0.236588125, 
-                                'fluid ounces': 8,
-                                'cups': 1,
-                                'pints': 0.5,
-                                'quarts': 0.25,
-                                'gallons': 0.0625
-                                },
-                        'pints': {
-                                'cubic centimeters': 473.17625, 
-                                'cubic meters': 0.0004731763, 
-                                'liters': 0.47317625, 
-                                'fluid ounces': 16,
-                                'cups': 2,
-                                'pints': 1,
-                                'quarts': 0.5,
-                                'gallons': 0.125
-                                },
-                        'quarts': {
-                                'cubic centimeters': 946.3525, 
-                                'cubic meters': 0.0009463525, 
-                                'liters': 0.9463525, 
-                                'fluid ounces': 32,
-                                'cups': 4,
-                                'pints': 2,
-                                'quarts': 1,
-                                'gallons': 0.25
-                                },
-                        'gallons': {
-                                'cubic centimeters': 3785.41, 
-                                'cubic meters': 0.00378541, 
-                                'liters': 3.78541, 
-                                'fluid ounces': 128,
-                                'cups': 16,
-                                'pints': 8,
-                                'quarts': 4,
-                                'gallons': 1
-                                }
-}
+
 
 root = Tk()
 root.title("Unit Converter")
