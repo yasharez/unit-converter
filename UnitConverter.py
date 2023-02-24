@@ -8,17 +8,13 @@ from tkinter import *
 from tkinter import ttk
 from functools import partial
 import client
+import json
 
 class UnitConverter:
   """Class definition of unit conversion app"""
 
   def __init__(self):
     """Initialize the application"""
-
-    self.__input_val = ''
-    self.__output_val = ''
-    self.__input_unit = ''
-    self.__output_unit = ''
 
     length_units        = (' millimeters', 
                                   ' meters', 
@@ -55,158 +51,27 @@ class UnitConverter:
                                   ' MXN', 
                                   ' CNY')
 
-    length_conversions  =   {
-                            'millimeters': {
-                                    'millimeters': 1,
-                                    'meters': 0.001,
-                                    'kilometers': 0.000001,
-                                    'inches': 0.0393701,
-                                    'feet': 0.00328084,
-                                    'miles': 0.0000006213688756
-                                    },
-                            'meters': {
-                                    'millimeters': 1000,
-                                    'meters': 1,
-                                    'kilometers': 0.001,
-                                    'inches': 39.3701,
-                                    'feet': 3.28084,
-                                    'miles': 0.0006213688756
-                                    },
-                            'kilometers': {
-                                    'millimeters': 1000000,
-                                    'meters': 1000,
-                                    'kilometers': 1,
-                                    'inches': 39370.1,
-                                    'feet': 3280.84,
-                                    'miles': 0.6213688756
-                                    },
-                            'inches': {
-                                    'millimeters': 25.4,
-                                    'meters': 0.0254,
-                                    'kilometers': 0.0000254,
-                                    'inches': 1,
-                                    'feet': 0.083333333,
-                                    'miles': 0.000015783
-                                    },
-                            'feet': {
-                                    'millimeters': 304.8,
-                                    'meters': 0.3048,
-                                    'kilometers': 0.0003048,
-                                    'inches': 12,
-                                    'feet': 1,
-                                    'miles': 0.000189394
-                                    },
-                            'miles': {
-                                    'millimeters': 1609340,
-                                    'meters': 1609.34,
-                                    'kilometers': 1.60934,
-                                    'inches': 63360,
-                                    'feet': 5280,
-                                    'miles': 1
-                                    },
-                            }
+    # Open JSON file and import conversion values
+    f = open('conversions.json')
+    self.__conversions = json.load(f)
 
-    volume_conversions  =   {
-                            'cubic centimeters': {
-                                    'cubic centimeters': 1, 
-                                    'cubic meters': 0.000001, 
-                                    'liters': 0.001, 
-                                    'fluid ounces': 0.0338140386,
-                                    'cups': 0.0042267548,
-                                    'pints': 0.0021133774,
-                                    'quarts': 0.0010566887,
-                                    'gallons': 0.0002641722
-                                    },
-                            'cubic meters': {
-                                    'cubic centimeters': 1000000, 
-                                    'cubic meters': 1, 
-                                    'liters': 1000, 
-                                    'fluid ounces': 33814.038638,
-                                    'cups': 4226.7548297,
-                                    'pints': 2113.3774149,
-                                    'quarts': 1056.6887074,
-                                    'gallons': 264.17217686
-                                    },
-                            'liters': {
-                                    'cubic centimeters': 1000, 
-                                    'cubic meters': 0.001, 
-                                    'liters': 1, 
-                                    'fluid ounces': 33.814038638,
-                                    'cups': 4.2267548297,
-                                    'pints': 2.1133774149,
-                                    'quarts': 1.0566887074,
-                                    'gallons': 0.2641721769
-                                    },
-                            'fluid ounces': {
-                                    'cubic centimeters': 29.573515625, 
-                                    'cubic meters': 0.0000295735, 
-                                    'liters': 0.0295735156, 
-                                    'fluid ounces': 1,
-                                    'cups': 0.125,
-                                    'pints': 0.0625,
-                                    'quarts': 0.03125,
-                                    'gallons': 0.0078125
-                                    },
-                            'cups': {
-                                    'cubic centimeters': 236.588125, 
-                                    'cubic meters': 0.0002365881, 
-                                    'liters': 0.236588125, 
-                                    'fluid ounces': 8,
-                                    'cups': 1,
-                                    'pints': 0.5,
-                                    'quarts': 0.25,
-                                    'gallons': 0.0625
-                                    },
-                            'pints': {
-                                    'cubic centimeters': 473.17625, 
-                                    'cubic meters': 0.0004731763, 
-                                    'liters': 0.47317625, 
-                                    'fluid ounces': 16,
-                                    'cups': 2,
-                                    'pints': 1,
-                                    'quarts': 0.5,
-                                    'gallons': 0.125
-                                    },
-                            'quarts': {
-                                    'cubic centimeters': 946.3525, 
-                                    'cubic meters': 0.0009463525, 
-                                    'liters': 0.9463525, 
-                                    'fluid ounces': 32,
-                                    'cups': 4,
-                                    'pints': 2,
-                                    'quarts': 1,
-                                    'gallons': 0.25
-                                    },
-                            'gallons': {
-                                    'cubic centimeters': 3785.41, 
-                                    'cubic meters': 0.00378541, 
-                                    'liters': 3.78541, 
-                                    'fluid ounces': 128,
-                                    'cups': 16,
-                                    'pints': 8,
-                                    'quarts': 4,
-                                    'gallons': 1
-                                    }
-                            }
-
+    # Create Tkinter root
     root = Tk()
     root.title("Unit Converter")
 
-    # # Create conversion_frame to put widgets in
-    # root.columnconfigure(0, weight=1)
-    # root.rowconfigure(0, weight=1)
-    # root.config(height=500, width=500)
-
+    # Create mainframe to hold navigation buttons
     mainframe = ttk.Frame(root, padding='5 5 5 5')
     mainframe.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
     mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
 
+    # Create frame to hold each unit conversion page
     conversion_frame = ttk.Frame(mainframe)
     conversion_frame.columnconfigure((0, 1, 2, 3, 4, 5), weight=1)
     conversion_frame.grid(column=0, row=1, columnspan=6, sticky=(N, W, E, S))
 
+    # Create navigation button for each unit
     homeBtn = ttk.Button(mainframe, text='Home', default='active', command=partial(self.__create_main_page, conversion_frame)).grid(column=0, row=0, sticky=(N, W, E))
     lengthBtn = ttk.Button(mainframe, text='Length', command=partial(self.__create_unit_page, conversion_frame, length_units, 'length')).grid(column=1, row=0, sticky=(N, W, E))
     massBtn = ttk.Button(mainframe, text='Mass', command=partial(self.__create_unit_page, conversion_frame, mass_units, 'mass')).grid(column=2, row=0, sticky=(N, W, E))
@@ -214,7 +79,7 @@ class UnitConverter:
     tempBtn = ttk.Button(mainframe, text='Temperature', command=partial(self.__create_unit_page, conversion_frame, temperature_units, 'temperature')).grid(column=4, row=0, sticky=(N, W, E))
     currencyBtn = ttk.Button(mainframe, text='Currency', command=partial(self.__create_unit_page, conversion_frame, currency_units, 'currency')).grid(column=5, row=0, sticky=(N, W, E))
 
-    # Populate each tab for units
+    # Populate the main application page
     self.__create_main_page(conversion_frame)
 
     # Start the application mainloop
@@ -246,6 +111,8 @@ class UnitConverter:
     for widget in conversion_frame.winfo_children():
       widget.destroy()
 
+    self.__unit_type = unit_type
+
     # Display instructions
     instruction = "Enter the value and units you would like to convert from, then select the units you would like to convert to:"
     ttk.Label(conversion_frame, text=instruction).grid(column=0, row=0, columnspan=5, padx=10, pady=10)
@@ -276,39 +143,23 @@ class UnitConverter:
     output_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
     output_choices.current(0)
 
-    # Create button widget to calculate conversion
-    ttk.Button(conversion_frame, text='Convert', command=self.__convert).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+    # Create button widget to insert random number for user
+    ttk.Button(conversion_frame, text='Random').grid(column=0, row=2, sticky=(E, W), pady=(20,0), padx=(10,5))
 
-  def convert(self, *args):
+    # Create button widget to calculate conversion
+    ttk.Button(conversion_frame, text='Convert', command=self.__convert).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(5, 10))
+
+  def __convert(self, *args):
 
       try:
           value = float(self.__input_val.get())
           from_unit = self.__input_unit.get().strip()
           to_unit = self.__output_unit.get().strip()
-          self.__output_val.set(conversions[from_unit][to_unit] * value)
-          print(from_unit, to_unit)
+          self.__output_val.set(self.__conversions[self.__unit_type][from_unit][to_unit] * value)
       except ValueError:
           pass
 
-  def calculate_mass(*args):
-
-      pass
-
-  def calculate_volume(*args):
-
-
-
-      pass
-
-  def calculate_temperature(*args):
-
-      pass
-
-  def calculate_currency(*args):
-
-      pass
-
-  def randomize(*args):
+  def __randomize(*args):
 
       random = client.client()
 
