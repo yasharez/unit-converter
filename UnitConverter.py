@@ -208,11 +208,11 @@ class UnitConverter:
     conversion_frame.grid(column=0, row=1, columnspan=6, sticky=(N, W, E, S))
 
     homeBtn = ttk.Button(mainframe, text='Home', default='active', command=partial(self.__create_main_page, conversion_frame)).grid(column=0, row=0, sticky=(N, W, E))
-    lengthBtn = ttk.Button(mainframe, text='Length', command=partial(self.__create_unit_page, conversion_frame, length_units)).grid(column=1, row=0, sticky=(N, W, E))
-    massBtn = ttk.Button(mainframe, text='Mass', command=partial(self.__create_unit_page, conversion_frame, mass_units)).grid(column=2, row=0, sticky=(N, W, E))
-    volumeBtn = ttk.Button(mainframe, text='Volume', command=partial(self.__create_unit_page, conversion_frame, volume_units)).grid(column=3, row=0, sticky=(N, W, E))
-    tempBtn = ttk.Button(mainframe, text='Temperature', command=partial(self.__create_unit_page, conversion_frame, temperature_units)).grid(column=4, row=0, sticky=(N, W, E))
-    currencyBtn = ttk.Button(mainframe, text='Currency', command=partial(self.__create_unit_page, conversion_frame, currency_units)).grid(column=5, row=0, sticky=(N, W, E))
+    lengthBtn = ttk.Button(mainframe, text='Length', command=partial(self.__create_unit_page, conversion_frame, length_units, 'length')).grid(column=1, row=0, sticky=(N, W, E))
+    massBtn = ttk.Button(mainframe, text='Mass', command=partial(self.__create_unit_page, conversion_frame, mass_units, 'mass')).grid(column=2, row=0, sticky=(N, W, E))
+    volumeBtn = ttk.Button(mainframe, text='Volume', command=partial(self.__create_unit_page, conversion_frame, volume_units, 'volume')).grid(column=3, row=0, sticky=(N, W, E))
+    tempBtn = ttk.Button(mainframe, text='Temperature', command=partial(self.__create_unit_page, conversion_frame, temperature_units, 'temperature')).grid(column=4, row=0, sticky=(N, W, E))
+    currencyBtn = ttk.Button(mainframe, text='Currency', command=partial(self.__create_unit_page, conversion_frame, currency_units, 'currency')).grid(column=5, row=0, sticky=(N, W, E))
 
     # Populate each tab for units
     self.__create_main_page(conversion_frame)
@@ -238,7 +238,7 @@ class UnitConverter:
     ttk.Label(conversion_frame, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
     ttk.Label(conversion_frame, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
-  def __create_unit_page(self, conversion_frame, units):
+  def __create_unit_page(self, conversion_frame, units, unit_type):
     """
     Create widgets for desired unit
     """
@@ -277,18 +277,16 @@ class UnitConverter:
     output_choices.current(0)
 
     # Create button widget to calculate conversion
-    ttk.Button(conversion_frame, text='Convert', command=self.__calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
+    ttk.Button(conversion_frame, text='Convert', command=self.__convert).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
-  def calculate_length(*args):
+  def convert(self, *args):
 
-
-      
       try:
-          value = float(input_length.get())
-          from_unit = i_length_unit.get().strip()
-          to_unit = o_length_unit.get().strip()
-          output_length.set(length_conversions[from_unit][to_unit] * value)
-          print(i_length_unit.get(), o_length_unit.get())
+          value = float(self.__input_val.get())
+          from_unit = self.__input_unit.get().strip()
+          to_unit = self.__output_unit.get().strip()
+          self.__output_val.set(conversions[from_unit][to_unit] * value)
+          print(from_unit, to_unit)
       except ValueError:
           pass
 
