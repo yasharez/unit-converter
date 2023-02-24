@@ -6,6 +6,7 @@
 # Import libraries
 from tkinter import *
 from tkinter import ttk
+import client
 
 def calculate_length(*args):
 
@@ -70,6 +71,10 @@ def calculate_length(*args):
         pass
 
 def calculate_mass(*args):
+
+    pass
+
+def calculate_volume(*args):
 
     volume_conversions  =   {
                             'cubic centimeters': {
@@ -156,10 +161,6 @@ def calculate_mass(*args):
 
     pass
 
-def calculate_volume(*args):
-
-    pass
-
 def calculate_temperature(*args):
 
     pass
@@ -167,6 +168,12 @@ def calculate_temperature(*args):
 def calculate_currency(*args):
 
     pass
+
+def randomize(*args):
+
+    random = client.client()
+    
+
 
 
 length_units        =   (' millimeters', 
@@ -203,9 +210,6 @@ currency_units      =   (' USD',
                         ' JPY', 
                         ' MXN', 
                         ' CNY')
-
-
-
 
 
 root = Tk()
