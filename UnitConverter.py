@@ -7,6 +7,7 @@
 from tkinter import *
 from tkinter import ttk
 from functools import partial
+import client
 
 class UnitConverter:
   """Class definition of unit conversion app"""
@@ -53,6 +54,140 @@ class UnitConverter:
                                   ' JPY', 
                                   ' MXN', 
                                   ' CNY')
+
+    length_conversions  =   {
+                            'millimeters': {
+                                    'millimeters': 1,
+                                    'meters': 0.001,
+                                    'kilometers': 0.000001,
+                                    'inches': 0.0393701,
+                                    'feet': 0.00328084,
+                                    'miles': 0.0000006213688756
+                                    },
+                            'meters': {
+                                    'millimeters': 1000,
+                                    'meters': 1,
+                                    'kilometers': 0.001,
+                                    'inches': 39.3701,
+                                    'feet': 3.28084,
+                                    'miles': 0.0006213688756
+                                    },
+                            'kilometers': {
+                                    'millimeters': 1000000,
+                                    'meters': 1000,
+                                    'kilometers': 1,
+                                    'inches': 39370.1,
+                                    'feet': 3280.84,
+                                    'miles': 0.6213688756
+                                    },
+                            'inches': {
+                                    'millimeters': 25.4,
+                                    'meters': 0.0254,
+                                    'kilometers': 0.0000254,
+                                    'inches': 1,
+                                    'feet': 0.083333333,
+                                    'miles': 0.000015783
+                                    },
+                            'feet': {
+                                    'millimeters': 304.8,
+                                    'meters': 0.3048,
+                                    'kilometers': 0.0003048,
+                                    'inches': 12,
+                                    'feet': 1,
+                                    'miles': 0.000189394
+                                    },
+                            'miles': {
+                                    'millimeters': 1609340,
+                                    'meters': 1609.34,
+                                    'kilometers': 1.60934,
+                                    'inches': 63360,
+                                    'feet': 5280,
+                                    'miles': 1
+                                    },
+                            }
+
+    volume_conversions  =   {
+                            'cubic centimeters': {
+                                    'cubic centimeters': 1, 
+                                    'cubic meters': 0.000001, 
+                                    'liters': 0.001, 
+                                    'fluid ounces': 0.0338140386,
+                                    'cups': 0.0042267548,
+                                    'pints': 0.0021133774,
+                                    'quarts': 0.0010566887,
+                                    'gallons': 0.0002641722
+                                    },
+                            'cubic meters': {
+                                    'cubic centimeters': 1000000, 
+                                    'cubic meters': 1, 
+                                    'liters': 1000, 
+                                    'fluid ounces': 33814.038638,
+                                    'cups': 4226.7548297,
+                                    'pints': 2113.3774149,
+                                    'quarts': 1056.6887074,
+                                    'gallons': 264.17217686
+                                    },
+                            'liters': {
+                                    'cubic centimeters': 1000, 
+                                    'cubic meters': 0.001, 
+                                    'liters': 1, 
+                                    'fluid ounces': 33.814038638,
+                                    'cups': 4.2267548297,
+                                    'pints': 2.1133774149,
+                                    'quarts': 1.0566887074,
+                                    'gallons': 0.2641721769
+                                    },
+                            'fluid ounces': {
+                                    'cubic centimeters': 29.573515625, 
+                                    'cubic meters': 0.0000295735, 
+                                    'liters': 0.0295735156, 
+                                    'fluid ounces': 1,
+                                    'cups': 0.125,
+                                    'pints': 0.0625,
+                                    'quarts': 0.03125,
+                                    'gallons': 0.0078125
+                                    },
+                            'cups': {
+                                    'cubic centimeters': 236.588125, 
+                                    'cubic meters': 0.0002365881, 
+                                    'liters': 0.236588125, 
+                                    'fluid ounces': 8,
+                                    'cups': 1,
+                                    'pints': 0.5,
+                                    'quarts': 0.25,
+                                    'gallons': 0.0625
+                                    },
+                            'pints': {
+                                    'cubic centimeters': 473.17625, 
+                                    'cubic meters': 0.0004731763, 
+                                    'liters': 0.47317625, 
+                                    'fluid ounces': 16,
+                                    'cups': 2,
+                                    'pints': 1,
+                                    'quarts': 0.5,
+                                    'gallons': 0.125
+                                    },
+                            'quarts': {
+                                    'cubic centimeters': 946.3525, 
+                                    'cubic meters': 0.0009463525, 
+                                    'liters': 0.9463525, 
+                                    'fluid ounces': 32,
+                                    'cups': 4,
+                                    'pints': 2,
+                                    'quarts': 1,
+                                    'gallons': 0.25
+                                    },
+                            'gallons': {
+                                    'cubic centimeters': 3785.41, 
+                                    'cubic meters': 0.00378541, 
+                                    'liters': 3.78541, 
+                                    'fluid ounces': 128,
+                                    'cups': 16,
+                                    'pints': 8,
+                                    'quarts': 4,
+                                    'gallons': 1
+                                    }
+                            }
 
     root = Tk()
     root.title("Unit Converter")
@@ -144,13 +279,40 @@ class UnitConverter:
     # Create button widget to calculate conversion
     ttk.Button(conversion_frame, text='Convert', command=self.__calculate_length).grid(column=1, row=2, columnspan=3, sticky=(E, W), pady=(20, 0))
 
-  def __calculate_length(self, *args):
-    try:
-        value = float(self.__input_val.get())
-        self.__output_val.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
-        print(self.__input_unit.get(), self.__output_unit.get())
-    except ValueError:
-        pass
+  def calculate_length(*args):
+
+
+      
+      try:
+          value = float(input_length.get())
+          from_unit = i_length_unit.get().strip()
+          to_unit = o_length_unit.get().strip()
+          output_length.set(length_conversions[from_unit][to_unit] * value)
+          print(i_length_unit.get(), o_length_unit.get())
+      except ValueError:
+          pass
+
+  def calculate_mass(*args):
+
+      pass
+
+  def calculate_volume(*args):
+
+
+
+      pass
+
+  def calculate_temperature(*args):
+
+      pass
+
+  def calculate_currency(*args):
+
+      pass
+
+  def randomize(*args):
+
+      random = client.client()
 
 if __name__ == "__main__":
   UnitConverter()
