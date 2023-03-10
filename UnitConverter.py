@@ -30,10 +30,8 @@ class UnitConverter:
                                   ' pounds', 
                                   ' tons')
 
-    volume_units        = (' cubic millimeters', 
-                                  ' cubic centimeters', 
+    volume_units        = (' cubic centimeters', 
                                   ' cubic meters', 
-                                  ' cubic kilometers', 
                                   ' liters', 
                                   ' fluid ounces',
                                   ' cups',
@@ -139,7 +137,7 @@ class UnitConverter:
 
     # Create combobox widget for the unit we want to convert to
     self.__output_unit = StringVar()
-    output_choices = ttk.Combobox(conversion_frame, width=10, state='readonly', textvariable=self.__output_unit)
+    output_choices = ttk.Combobox(conversion_frame, state='readonly', textvariable=self.__output_unit)
     output_choices['values'] = units
     output_choices.grid(column=4, row=1, sticky=(W, E), padx=(0, 10))
     output_choices.current(0)
@@ -151,19 +149,75 @@ class UnitConverter:
     ttk.Button(conversion_frame, text='Convert', command=self.__convert).grid(column=1, row=2, columnspan=4, sticky=(E, W), pady=(20, 0), padx=(5, 10))
 
   def __convert(self, *args):
-
+    """Convert the input value from the specified unit to the other specified unit"""
       try:
           value = float(self.__input_val.get())
           from_unit = self.__input_unit.get().strip()
           to_unit = self.__output_unit.get().strip()
-          self.__output_val.set(self.__conversions[self.__unit_type][from_unit][to_unit] * value)
+          
+          # Special equation conversions for temperature units
+          if self.__unit_type == 'temperatrure':
+            if from_unit == 'Celsius':
+              output = self.__convert_c(value, to_unit)
+            elif from_unit == 'Fahrenheit':
+              output = self.__convert_f(value, to_unit)
+            elif from_unit == 'Kelvin':
+              output = self.__convert_k(value, to_unit)
+            self.__output_val.set(output)
+          else:
+            self.__output_val.set(self.__conversions[self.__unit_type][from_unit][to_unit] * value)
       except ValueError:
           pass
 
   def __randomize(self, *args):
+    """Returns a random value from partner's microservice"""
+    random = client.client()
+    self.__input_val.set(float(random))
 
-      random = client.client()
-      self.__input_val.set(float(random))
+  def __convert_c(self, value, to_unit):
+    """Helper method to convert from Celsius"""
+    if to_unit == 'Fahrenheit':
+      return self.__c_to_f(value)
+    elif to_unit == 'Kelvin':
+      return self.__c_to_k(value)
+
+  def __convert_f(self, value, to_unit):
+    """Helper method to convert from Fahrenheit"""
+    if to_unit == 'Celsius':
+      return self.__f_to_c(value)
+    elif to_unit == 'Kelvin':
+      return self.__f_to_k(value)
+
+  def __convert_k(self, value, to_unit):
+    """Helper method to convert from Kelvin"""
+    if to_unit == 'Celsius':
+      return self.__k_to_c(value)
+    elif to_unit == 'Fahrenheit':
+      return self.__k_to_f(value)
+
+  def __c_to_f(self, c):
+    """Convert from Celsius to Fahrenheit"""
+    return (c * 9 / 5) + 32
+
+  def __f_to_c(self, f):
+    """Convert from Fahrenheit to Celsius"""
+    return (f - 32) * 5 / 9
+
+  def __k_to_f(self, k):
+    """Convert from Kelvin to Fahrenheit"""
+    return self.__c_to_f(self.__k_to_c(k))
+
+  def __f_to_k(self, f):
+    """Convert from Fahrenheit to Kelvin"""
+    return self.__c_to_k(self.__f_to_c(f))
+
+  def __c_to_k(self, c):
+    """Convert from Celsius to Kelvin"""
+    return  c + 273.15
+
+  def __k_to_c(self, k):
+    """Convert from Kelvin to Celsius"""
+    return k - 273.15
 
 if __name__ == "__main__":
   UnitConverter()
