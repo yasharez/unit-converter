@@ -150,24 +150,24 @@ class UnitConverter:
 
   def __convert(self, *args):
     """Convert the input value from the specified unit to the other specified unit"""
-      try:
-          value = float(self.__input_val.get())
-          from_unit = self.__input_unit.get().strip()
-          to_unit = self.__output_unit.get().strip()
-          
-          # Special equation conversions for temperature units
-          if self.__unit_type == 'temperatrure':
-            if from_unit == 'Celsius':
-              output = self.__convert_c(value, to_unit)
-            elif from_unit == 'Fahrenheit':
-              output = self.__convert_f(value, to_unit)
-            elif from_unit == 'Kelvin':
-              output = self.__convert_k(value, to_unit)
-            self.__output_val.set(output)
-          else:
-            self.__output_val.set(self.__conversions[self.__unit_type][from_unit][to_unit] * value)
-      except ValueError:
-          pass
+    try:
+        value = float(self.__input_val.get())
+        from_unit = self.__input_unit.get().strip()
+        to_unit = self.__output_unit.get().strip()
+        
+        # Special equation conversions for temperature units
+        if self.__unit_type == 'temperature':
+          if from_unit == 'Celsius':
+            output = self.__convert_c(value, to_unit)
+          elif from_unit == 'Fahrenheit':
+            output = self.__convert_f(value, to_unit)
+          elif from_unit == 'Kelvin':
+            output = self.__convert_k(value, to_unit)
+          self.__output_val.set(output)
+        else:
+          self.__output_val.set(self.__conversions[self.__unit_type][from_unit][to_unit] * value)
+    except ValueError:
+        pass
 
   def __randomize(self, *args):
     """Returns a random value from partner's microservice"""
@@ -180,6 +180,8 @@ class UnitConverter:
       return self.__c_to_f(value)
     elif to_unit == 'Kelvin':
       return self.__c_to_k(value)
+    else:
+      return value
 
   def __convert_f(self, value, to_unit):
     """Helper method to convert from Fahrenheit"""
@@ -187,6 +189,8 @@ class UnitConverter:
       return self.__f_to_c(value)
     elif to_unit == 'Kelvin':
       return self.__f_to_k(value)
+    else:
+      return value
 
   def __convert_k(self, value, to_unit):
     """Helper method to convert from Kelvin"""
@@ -194,6 +198,8 @@ class UnitConverter:
       return self.__k_to_c(value)
     elif to_unit == 'Fahrenheit':
       return self.__k_to_f(value)
+    else:
+      return value
 
   def __c_to_f(self, c):
     """Convert from Celsius to Fahrenheit"""
