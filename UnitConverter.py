@@ -45,11 +45,12 @@ class UnitConverter:
                                   ' Fahrenheit', 
                                   ' Kelvin')
 
-    currency_units      = (' USD', 
-                                  ' EUR', 
-                                  ' JPY', 
-                                  ' MXN', 
-                                  ' CNY')
+    currency_units      = (' United States Dollar', 
+                                  ' Euro', 
+                                  ' Japanese Yen', 
+                                  ' Mexican Peso', 
+                                  ' Chinese Yuan',
+                                  ' Canadian Dollar')
 
     # Open JSON file and import conversion values
     f = open('conversions.json')
