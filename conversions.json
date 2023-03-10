@@ -49,6 +49,56 @@
       "miles": 1
     }
   },
+  "mass": {
+    "milligrams": {
+      "milligram": 1,
+      "grams": 0.001,
+      "kilograms": 0.000001,
+      "ounces": 0.000035274,
+      "pounds": 0.0000022046,
+      "tons": 0.00000000110231221
+    },
+    "grams": {
+      "milligram": 1000,
+      "grams": 0.001,
+      "kilograms": 0.001,
+      "ounces": 0.035274,
+      "pounds": 0.0022046,
+      "tons": 0.00000110231221
+    },
+    "kilograms": {
+      "milligram": 1000000,
+      "grams": 1000,
+      "kilograms": 1,
+      "ounces": 35.273990723,
+      "pounds": 2.2046244202,
+      "tons": 0.0011023122
+    },
+    "ounces": {
+      "milligram": 28349.5,
+      "grams": 28.3495,
+      "kilograms": 0.0283495,
+      "ounces": 1,
+      "pounds": 0.0625,
+      "tons": 0.00003125
+    },
+    "pounds": {
+      "milligram": 453592,
+      "grams": 453.592,
+      "kilograms": 0.453592,
+      "ounces": 16,
+      "pounds": 1,
+      "tons": 0.0005
+    },
+    "tons": {
+      "milligram": 907184000,
+      "grams": 907184,
+      "kilograms": 907.184,
+      "ounces": 32000,
+      "pounds": 2000,
+      "tons": 1
+    }
+  },
   "volume": {
     "cubic centimeters": {
       "cubic centimeters": 1,
