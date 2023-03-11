@@ -92,15 +92,16 @@ class UnitConverter:
     for widget in conversion_frame.winfo_children():
       widget.destroy()
 
-    main_label_1 = '* Welcome to Unit-Converter! Your one stop shop for quick and easy unit conversions'
-    main_label_2 = '* Currently we support length, mass, volume, temperature, and currency conversions'
-    main_label_3 = '* Any new features we add in future updates will be featured on this page'
-    main_label_4 = '* For now, tap through the tabs at the top of this window to begin converting'
+    label_1_str = '* Welcome to Unit-Converter! Your one stop shop for quick and easy unit conversions'
+    label_2_str = "* NEW FEATURE: Randomize button! On each page you will see a button labeled 'Random'\n"\
+                    '   Press it to randomly generate a number for you to convert from!'
+    label_3_str = '* Currently we support length, mass, volume, temperature, and currency conversions'
+    label_4_str = '* For now, tap through the tabs at the top of this window to begin converting'
 
-    ttk.Label(conversion_frame, text=main_label_1).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
-    ttk.Label(conversion_frame, text=main_label_2).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(conversion_frame, text=main_label_3).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
-    ttk.Label(conversion_frame, text=main_label_4).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
+    label_1 = ttk.Label(conversion_frame, text=label_1_str).grid(column=0, row=0, sticky=(N, W, E, S), padx=5, pady=(10, 5))
+    label_2 = ttk.Label(conversion_frame, text=label_2_str).grid(column=0, row=1, sticky=(N, W, E, S), padx=5, pady=5)
+    label_3 = ttk.Label(conversion_frame, text=label_3_str).grid(column=0, row=2, sticky=(N, W, E, S), padx=5, pady=5)
+    label_4 = ttk.Label(conversion_frame, text=label_4_str).grid(column=0, row=3, sticky=(N, W, E, S), padx=5, pady=(5, 10))
 
   def __create_unit_page(self, conversion_frame, units, unit_type):
     """
